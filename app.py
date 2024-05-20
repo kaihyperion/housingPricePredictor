@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import joblib
 import pydeck as pdk
+import os
 from sklearn.base import BaseEstimator, TransformerMixin
 
 rooms_ix, bedrooms_ix, population_ix, households_ix = 3,4,5,6
@@ -29,7 +30,8 @@ model = joblib.load('predictor_model.pkl')
 
 
 def load_map_data():
-    data = pd.read_csv('/Users/kyperion/Documents/Developer/MLProjects/housingPricePredictor/datasets/housing/housing.csv')
+    file_path = os.path.join('datasets','housing','housing.csv')
+    data = pd.read_csv(file_path)
     precision=1
     data['lat'] = data['latitude'].round(precision)
     data['lon'] = data['longitude'].round(precision)
